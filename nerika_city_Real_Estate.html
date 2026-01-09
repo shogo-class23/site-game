@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>練鹿市の物件情報 - 物件名サンプル</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            background-color: #f7f7f7;
+            color: #333;
+            line-height: 1.6;
+        }
+        .header {
+            background-color: #fff;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .main-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .property-title h1 {
+            font-size: 2.2rem;
+            margin: 0;
+            color: #222;
+        }
+        .property-title .address {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        .property-tags {
+            margin: 1rem 0;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #e9f5ff;
+            color: #007bff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .photo-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .photo-main img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .photo-thumbnails {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+        .photo-thumbnails img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+        .info-item {
+            padding: 0.5rem;
+        }
+        .info-item .label {
+            font-weight: bold;
+            color: #555;
+            display: block;
+        }
+        .info-item .value {
+            font-size: 1.2rem;
+            color: #d9534f;
+            font-weight: bold;
+        }
+        .info-item .sub-value {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+        .details-table th, .details-table td {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            text-align: left;
+        }
+        .details-table th {
+            background-color: #f2f2f2;
+            width: 25%;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .action-button {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .inquiry-btn {
+            background-color: #d9534f;
+            color: white;
+        }
+        .booking-btn {
+            background-color: #5cb85c;
+            color: white;
+        }
+        .favorite-btn {
+            background-color: #f0ad4e;
+            color: white;
+        }
+        .footer-info {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            background-color: #fff;
+            border-top: 1px solid #ddd;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">練鹿市不動産</div>
+    </header>
+
+    <div class="main-container">
+        <div class="property-title">
+            <h1>パークビュー練鹿 301号室</h1>
+            <p class="address">東京都練鹿市栄町1-2-3</p>
+        </div>
+
+        <div class="property-tags">
+            <span class="tag">駅近5分</span>
+            <span class="tag">南向き</span>
+            <span class="tag">ペット相談可</span>
+            <span class="tag">オートロック</span>
+            <span class="tag">2階以上</span>
+        </div>
+
+        <div class="photo-section">
+            <div class="photo-main">
+                <img src="https://via.placeholder.com/600x400.png?text=外観写真" alt="外観写真">
+            </div>
+            <div class="photo-thumbnails">
+                <img src="https://via.placeholder.com/300x200.png?text=室内写真1" alt="室内写真1">
+                <img src="https://via.placeholder.com/300x200.png?text=室内写真2" alt="室内写真2">
+                <img src="https://via.placeholder.com/300x200.png?text=室内写真3" alt="室内写真3">
+                <img src="https://via.placeholder.com/300x200.png?text=間取り図" alt="間取り図">
+            </div>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="label">家賃</span>
+                <span class="value">10.5万円</span>
+            </div>
+            <div class="info-item">
+                <span class="label">管理費・共益費</span>
+                <span class="value">5,000円</span>
+            </div>
+            <div class="info-item">
+                <span class="label">敷金 / 礼金</span>
+                <span class="value">1ヶ月 / 1ヶ月</span>
+            </div>
+            <div class="info-item">
+                <span class="label">間取り / 向き</span>
+                <span class="value">1LDK / 南</span>
+            </div>
+        </div>
+        
+        <table class="details-table">
+            <tr>
+                <th>専有面積</th>
+                <td>40.5m²</td>
+                <th>築年数</th>
+                <td>5年</td>
+            </tr>
+            <tr>
+                <th>階数／建物階数</th>
+                <td>3階／5階建</td>
+                <th>構造</th>
+                <td>RC造</td>
+            </tr>
+            <tr>
+                <th>駐車場</th>
+                <td>あり（月額20,000円）</td>
+                <th>エアコン</th>
+                <td>あり</td>
+            </tr>
+            <tr>
+                <th>風呂トイレ別</th>
+                <td>あり</td>
+                <th>ペット</th>
+                <td>相談可</td>
+            </tr>
+             <tr>
+                <th>最寄り駅</th>
+                <td colspan="3">
+                    JR山足線「練鹿駅」徒歩5分<br>
+                    西足池貸線「練鹿三丁目駅」徒歩12分
+                </td>
+            </tr>
+            <tr>
+                <th>周辺環境</th>
+                <td colspan="3">
+                    スーパー「マルエツ」まで300m<br>
+                    練鹿区立栄町小学校まで500m
+                </td>
+            </tr>
+        </table>
+
+        <div class="action-buttons">
+            <a href="#" class="action-button inquiry-btn">お問い合わせ</a>
+            <a href="#" class="action-button booking-btn">内見予約</a>
+            <a href="#" class="action-button favorite-btn">お気に入り登録</a>
+        </div>
+    </div>
+
+    <footer class="footer-info">
+        <p><strong>運営会社:</strong> 株式会社練鹿エステート</p>
+        <p><strong>免許番号:</strong> 東京都知事(1)第12345号</p>
+        <p>※掲載情報と現況に差異がある場合は、現況を優先します。</p>
+        <p>&copy; 2026 Nerika Estate Inc. All rights reserved.</p>
+    </footer>
+</body>
+</html>
