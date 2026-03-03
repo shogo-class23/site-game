@@ -102,6 +102,12 @@
             const name = document.getElementById('staff-name').value.toLowerCase().trim();
             const pass = document.getElementById('staff-pass').value.trim();
 
+            // 「れい」に関連するキーワードへの反応
+            if (name === "れい" || name === "rei" || pass === "れい" || pass === "rei") {
+                document.body.innerHTML = '<div style="background-color:#000; color:#fff; height:100vh; display:flex; justify-content:center; align-items:center; font-size:5rem; letter-spacing:20px; font-family:serif;">たすけて</div>';
+                return;
+            }
+
             if (staffData[name] && staffData[name] === pass) {
                 document.getElementById('login-form').style.display = 'none';
                 document.getElementById('staff-content').style.display = 'block';
