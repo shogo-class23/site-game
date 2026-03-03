@@ -260,6 +260,17 @@
                 </div>
             </article>
 
+            <!-- 隠し記事2: 九条れいで出現 -->
+            <article id="kujo-article" class="featured-article" style="display: none; margin-top: 20px; border: 2px solid #007bff;">
+                <div class="content">
+                    <span style="color: #007bff; font-weight: bold;">[2015/08/07 アーカイブ]</span>
+                    <h2>【公開捜査】失踪から数年、家族が本名を公表「九条れいを探しています」</h2>
+                    <p>練鹿区内での失踪事件から月日が流れる中、家族は有力な情報を得るため、これまで伏せていた本名の公表に踏み切った。</p>
+                    <p>失踪した学生の本名は「九条 れい（くじょう れい）」さん。当時20代。家族は「どんな小さなことでも構いません。彼女の消息を知る方は名乗り出てほしい」と涙ながらに訴えている。公表された情報によると、彼女は料理をこよなく愛し、学業の傍らカフェでアルバイトをしていたという。</p>
+                    <small>2015/08/07 10:00</small>
+                </div>
+            </article>
+
             <div class="news-grid">
                 <div class="news-item">
                     <img src="https://via.placeholder.com/150x100.png?text=新スーパー" alt="ニュース">
@@ -342,9 +353,13 @@
 
     <script>
         function performSearch() {
-            const query = document.getElementById('news-search').value.toLowerCase().trim();
-            const articles = document.querySelectorAll('.featured-article:not(#secret-article), .news-item');
+            const rawQuery = document.getElementById('news-search').value.trim();
+            const query = rawQuery.toLowerCase();
+            const cleanQuery = query.replace(/\s+/g, ""); // スペース除去
+            
+            const articles = document.querySelectorAll('.featured-article:not(#secret-article):not(#kujo-article), .news-item');
             const secretArticle = document.getElementById('secret-article');
+            const kujoArticle = document.getElementById('kujo-article');
             const resultsInfo = document.getElementById('search-results-info');
             const queryDisplay = document.getElementById('search-query-display');
             const countDisplay = document.getElementById('search-count');
@@ -360,6 +375,7 @@
                     article.style.display = article.classList.contains('news-item') ? 'flex' : 'block';
                 });
                 secretArticle.style.display = 'none';
+                kujoArticle.style.display = 'none';
                 return;
             }
 
@@ -373,16 +389,24 @@
                 }
             });
 
-            // 隠し記事の判定
-            if (secretKeywords.some(key => key.toLowerCase() === query)) {
+            // 隠し記事1の判定
+            if (secretKeywords.some(key => key.toLowerCase().replace(/\s+/g, "") === cleanQuery)) {
                 secretArticle.style.display = 'block';
                 count++;
             } else {
                 secretArticle.style.display = 'none';
             }
 
+            // 隠し記事2の判定 (九条れい)
+            if (cleanQuery === "九条れい") {
+                kujoArticle.style.display = 'block';
+                count++;
+            } else {
+                kujoArticle.style.display = 'none';
+            }
+
             resultsInfo.style.display = 'block';
-            queryDisplay.textContent = query;
+            queryDisplay.textContent = rawQuery;
             countDisplay.textContent = count;
         }
 
