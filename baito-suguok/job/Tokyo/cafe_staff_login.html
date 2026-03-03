@@ -84,7 +84,18 @@
     <script>
         const staffData = {
             "rei": "20090319",
-            "0000": "0000"
+            "0000": "0000",
+            "yuu": "20091006",
+            "kenji": "20080401",
+            "yumi": "20080512",
+            "daiki": "20080620",
+            "hana": "20080707",
+            "ryo": "20080815",
+            "maki": "20080930",
+            "shota": "20081111",
+            "nana": "20081224",
+            "kaito": "20090105",
+            "ai": "20090214"
         };
 
         function login() {
@@ -96,6 +107,17 @@
                 document.getElementById('staff-content').style.display = 'block';
                 document.getElementById('welcome-msg').textContent = "Login Success: " + name;
                 
+                // yuuでログインした場合の特別な業務連絡
+                if (name === "yuu") {
+                    const portal = document.getElementById('staff-content');
+                    portal.innerHTML += `
+                        <div style="background: #fff5f5; border: 1px solid #ffcdd2; padding: 15px; margin-top: 15px;">
+                            <p style="color: #c62828; font-weight: bold; margin-top: 0;">【個別メッセージ】</p>
+                            <p style="font-size: 0.9rem; color: #333;">九条さん、昨日の片付けありがとうございました。<br>例のレシピの件、店長が話したがっていました。</p>
+                        </div>
+                    `;
+                }
+
                 if (name === "0000") {
                     document.getElementById('login-hint-box').style.display = 'block';
                 }
