@@ -13,11 +13,11 @@
             line-height: 1.6;
         }
 
-        /* 登録用オーバーレイ */
+        /* 登録・ログイン用オーバーレイ */
         #registration-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.9);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -39,7 +39,7 @@
         .registration-box input {
             width: 80%;
             padding: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
         }
@@ -51,8 +51,9 @@
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
+            margin-top: 10px;
         }
-        .password-notice {
+        .notice-area {
             margin-top: 20px;
             padding: 15px;
             background: #e9f5ff;
@@ -87,11 +88,6 @@
             font-size: 2.2rem;
             margin: 0;
             color: #222;
-        }
-        .property-title .address {
-            font-size: 1rem;
-            color: #666;
-            margin-top: 0.5rem;
         }
         .property-tags {
             margin: 1rem 0;
@@ -149,10 +145,6 @@
             color: #d9534f;
             font-weight: bold;
         }
-        .info-item .sub-value {
-            font-size: 0.9rem;
-            color: #666;
-        }
         .details-table {
             width: 100%;
             border-collapse: collapse;
@@ -182,18 +174,9 @@
             cursor: pointer;
             text-decoration: none;
         }
-        .inquiry-btn {
-            background-color: #d9534f;
-            color: white;
-        }
-        .booking-btn {
-            background-color: #5cb85c;
-            color: white;
-        }
-        .favorite-btn {
-            background-color: #f0ad4e;
-            color: white;
-        }
+        .inquiry-btn { background-color: #d9534f; color: white; }
+        .booking-btn { background-color: #5cb85c; color: white; }
+        .favorite-btn { background-color: #f0ad4e; color: white; }
         .footer-info {
             text-align: center;
             padding: 2rem;
@@ -211,26 +194,41 @@
         <div id="user-display" style="font-size: 0.9rem; color: #666;"></div>
     </header>
 
-    <!-- 登録システムオーバーレイ -->
+    <!-- 登録・ログインシステム -->
     <div id="registration-overlay">
         <div class="registration-box">
-            <h2 id="reg-title">名前を登録をして色んな物件を見よう！</h2>
-            <div id="input-section">
-                <input type="text" id="user-name" placeholder="お名前を入力してください">
+            <h2 id="modal-title">名前を登録をして色んな物件を見よう！</h2>
+            
+            <!-- ステップ1: 名前登録 -->
+            <div id="step-register">
+                <input type="text" id="reg-name" placeholder="お名前を入力してください">
                 <br>
                 <button onclick="registerName()">登録する</button>
             </div>
-            <div id="password-section" class="password-notice">
-                <p>登録ありがとうございました、<span id="display-name" style="font-weight: bold;"></span>さん！</p>
+
+            <!-- ステップ2: パスワード表示 -->
+            <div id="step-notice" class="notice-area">
+                <p>登録ありがとうございます、<span id="registered-name-display" style="font-weight: bold;"></span>さん！</p>
                 <p>初期パスワードは「<strong>0000</strong>」です。</p>
                 <div style="text-align: center; margin-top: 15px;">
-                    <button onclick="closeOverlay()">物件を見る</button>
+                    <button onclick="goToLogin()">ログイン画面へ</button>
                 </div>
+            </div>
+
+            <!-- ステップ3: ログイン -->
+            <div id="step-login" style="display: none;">
+                <p style="margin-bottom: 15px; color: #666;">登録したお名前とパスワードを入力してください。</p>
+                <input type="text" id="login-name" placeholder="お名前">
+                <br>
+                <input type="password" id="login-pass" placeholder="パスワード">
+                <br>
+                <button onclick="checkLogin()">ログイン</button>
             </div>
         </div>
     </div>
 
     <div class="main-container">
+        <!-- 物件詳細（ログイン後表示） -->
         <div class="property-title">
             <h1>パークビュー練鹿 301号室</h1>
             <p class="address">東京都練鹿区栄町1-2-3</p>
@@ -283,36 +281,11 @@
                 <td>5年</td>
             </tr>
             <tr>
-                <th>階数／建物階数</th>
-                <td>3階／5階建</td>
-                <th>構造</th>
-                <td>RC造</td>
-            </tr>
-            <tr>
-                <th>駐車場</th>
-                <td>あり（月額20,000円）</td>
-                <th>エアコン</th>
-                <td>あり</td>
-            </tr>
-            <tr>
-                <th>風呂トイレ別</th>
-                <td>あり</td>
-                <th>ペット</th>
-                <td>相談可</td>
-            </tr>
-             <tr>
                 <th>最寄り駅</th>
                 <td colspan="3">
                     JR山足線「練鹿駅」徒歩5分<br>
                     西足池貸線「練鹿三丁目駅」徒歩12分<br>
                     <span style="color: #c00; font-weight: bold;">[新設予定]</span> 練鹿区営地下鉄「栄町一丁目駅」徒歩2分（2030年開通予定）
-                </td>
-            </tr>
-            <tr>
-                <th>周辺環境</th>
-                <td colspan="3">
-                    スーパー「マルエツ」まで300m<br>
-                    練鹿区立栄町小学校まで500m
                 </td>
             </tr>
         </table>
@@ -326,43 +299,74 @@
 
     <footer class="footer-info">
         <p><strong>運営会社:</strong> 株式会社練鹿エステート</p>
-        <p><strong>免許番号:</strong> 東京都知事(1)第12345号</p>
         <p>※掲載情報と現況に差異がある場合は、現況を優先します。</p>
         <p>&copy; 2026 Nerika Estate Inc. All rights reserved.</p>
     </footer>
 
     <script>
-        // 保存された名前があるかチェック
         const savedName = localStorage.getItem('nerika_user_name');
+        const isLoggedIn = sessionStorage.getItem('nerika_logged_in');
+
+        // 初期表示の制御
         if (savedName) {
-            document.getElementById('registration-overlay').style.display = 'none';
-            document.getElementById('user-display').innerHTML = savedName + ' 様、ようこそ！ <a href="#" onclick="logout()" style="font-size: 0.7rem; color: #007bff; text-decoration: none;">(リセット)</a>';
+            if (isLoggedIn) {
+                // すでにログイン済み
+                document.getElementById('registration-overlay').style.display = 'none';
+                showWelcome(savedName);
+            } else {
+                // 名前はあるが未ログイン
+                goToLogin();
+            }
         }
 
         function registerName() {
-            const nameInput = document.getElementById('user-name');
-            const name = nameInput.value.trim();
+            const name = document.getElementById('reg-name').value.trim();
             if (name === "") {
                 alert("お名前を入力してください。");
                 return;
             }
-            // localStorageに保存
             localStorage.setItem('nerika_user_name', name);
-            
-            document.getElementById('display-name').textContent = name;
-            document.getElementById('input-section').style.display = 'none';
-            document.getElementById('password-section').style.display = 'block';
-            document.getElementById('reg-title').textContent = '登録完了';
+            document.getElementById('registered-name-display').textContent = name;
+            document.getElementById('step-register').style.display = 'none';
+            document.getElementById('step-notice').style.display = 'block';
+            document.getElementById('modal-title').textContent = '登録完了';
         }
 
-        function closeOverlay() {
-            document.getElementById('registration-overlay').style.display = 'none';
-            location.reload(); // 表示更新のためリロード
+        function goToLogin() {
+            document.getElementById('modal-title').textContent = 'ログイン';
+            document.getElementById('step-register').style.display = 'none';
+            document.getElementById('step-notice').style.display = 'none';
+            document.getElementById('step-login').style.display = 'block';
+            
+            // 登録済みの名前を自動入力
+            if (localStorage.getItem('nerika_user_name')) {
+                document.getElementById('login-name').value = localStorage.getItem('nerika_user_name');
+            }
+        }
+
+        function checkLogin() {
+            const name = document.getElementById('login-name').value.trim();
+            const pass = document.getElementById('login-pass').value.trim();
+            const correctName = localStorage.getItem('nerika_user_name');
+
+            if (name === correctName && pass === "0000") {
+                alert("ログインしました！");
+                sessionStorage.setItem('nerika_logged_in', 'true');
+                document.getElementById('registration-overlay').style.display = 'none';
+                showWelcome(name);
+            } else {
+                alert("名前またはパスワードが違います。");
+            }
+        }
+
+        function showWelcome(name) {
+            document.getElementById('user-display').innerHTML = name + ' 様、ようこそ！ <a href="#" onclick="logout()" style="font-size: 0.7rem; color: #007bff; text-decoration: none;">(リセット)</a>';
         }
 
         function logout() {
-            if(confirm("登録情報を削除して初期状態に戻しますか？")) {
+            if(confirm("登録情報を削除して最初からやり直しますか？")) {
                 localStorage.removeItem('nerika_user_name');
+                sessionStorage.removeItem('nerika_logged_in');
                 location.reload();
             }
         }
