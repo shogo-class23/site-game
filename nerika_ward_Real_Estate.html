@@ -84,10 +84,25 @@
             border: 1px solid #ddd;
             border-radius: 8px;
         }
+        .pagination-hint {
+            background: #fff3cd;
+            padding: 15px;
+            border: 1px solid #ffeeba;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #856404;
+            line-height: 1.5;
+        }
         .property-title h1 {
             font-size: 2.2rem;
             margin: 0;
             color: #222;
+        }
+        .property-title .address {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 0.5rem;
         }
         .property-tags {
             margin: 1rem 0;
@@ -228,7 +243,14 @@
     </div>
 
     <div class="main-container">
-        <!-- 物件詳細（ログイン後表示） -->
+        <!-- ページネーション案内 -->
+        <div class="pagination-hint">
+            現在12件ご用意ができています。1ページ10件までです。<br>
+            次のページに行く際はURLの最後のほうにある数字を変更してください。<br>
+            例：3から6ページに行きたい場合、最後の方にある「3」を「6」にします。
+        </div>
+
+        <!-- 物件詳細 -->
         <div class="property-title">
             <h1>パークビュー練鹿 301号室</h1>
             <p class="address">東京都練鹿区栄町1-2-3</p>
@@ -310,11 +332,9 @@
         // 初期表示の制御
         if (savedName) {
             if (isLoggedIn) {
-                // すでにログイン済み
                 document.getElementById('registration-overlay').style.display = 'none';
                 showWelcome(savedName);
             } else {
-                // 名前はあるが未ログイン
                 goToLogin();
             }
         }
@@ -338,7 +358,6 @@
             document.getElementById('step-notice').style.display = 'none';
             document.getElementById('step-login').style.display = 'block';
             
-            // 登録済みの名前を自動入力
             if (localStorage.getItem('nerika_user_name')) {
                 document.getElementById('login-name').value = localStorage.getItem('nerika_user_name');
             }
