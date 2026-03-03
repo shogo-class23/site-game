@@ -12,6 +12,56 @@
             color: #333;
             line-height: 1.6;
         }
+
+        /* 登録用オーバーレイ */
+        #registration-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .registration-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            max-width: 400px;
+            width: 90%;
+        }
+        .registration-box h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .registration-box input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .registration-box button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .password-notice {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e9f5ff;
+            color: #004085;
+            border-radius: 5px;
+            display: none;
+            text-align: left;
+        }
+
         .header {
             background-color: #fff;
             padding: 1rem 2rem;
@@ -158,7 +208,27 @@
 <body>
     <header class="header">
         <div class="logo">練鹿区不動産</div>
+        <div id="user-display" style="font-size: 0.9rem; color: #666;"></div>
     </header>
+
+    <!-- 登録システムオーバーレイ -->
+    <div id="registration-overlay">
+        <div class="registration-box">
+            <h2 id="reg-title">名前を登録をして色んな物件を見よう！</h2>
+            <div id="input-section">
+                <input type="text" id="user-name" placeholder="お名前を入力してください">
+                <br>
+                <button onclick="registerName()">登録する</button>
+            </div>
+            <div id="password-section" class="password-notice">
+                <p>登録ありがとうございました、<span id="display-name" style="font-weight: bold;"></span>さん！</p>
+                <p>初期パスワードは「<strong>0000</strong>」です。</p>
+                <div style="text-align: center; margin-top: 15px;">
+                    <button onclick="closeOverlay()">物件を見る</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="main-container">
         <div class="property-title">
@@ -260,5 +330,42 @@
         <p>※掲載情報と現況に差異がある場合は、現況を優先します。</p>
         <p>&copy; 2026 Nerika Estate Inc. All rights reserved.</p>
     </footer>
+
+    <script>
+        // 保存された名前があるかチェック
+        const savedName = localStorage.getItem('nerika_user_name');
+        if (savedName) {
+            document.getElementById('registration-overlay').style.display = 'none';
+            document.getElementById('user-display').innerHTML = savedName + ' 様、ようこそ！ <a href="#" onclick="logout()" style="font-size: 0.7rem; color: #007bff; text-decoration: none;">(リセット)</a>';
+        }
+
+        function registerName() {
+            const nameInput = document.getElementById('user-name');
+            const name = nameInput.value.trim();
+            if (name === "") {
+                alert("お名前を入力してください。");
+                return;
+            }
+            // localStorageに保存
+            localStorage.setItem('nerika_user_name', name);
+            
+            document.getElementById('display-name').textContent = name;
+            document.getElementById('input-section').style.display = 'none';
+            document.getElementById('password-section').style.display = 'block';
+            document.getElementById('reg-title').textContent = '登録完了';
+        }
+
+        function closeOverlay() {
+            document.getElementById('registration-overlay').style.display = 'none';
+            location.reload(); // 表示更新のためリロード
+        }
+
+        function logout() {
+            if(confirm("登録情報を削除して初期状態に戻しますか？")) {
+                localStorage.removeItem('nerika_user_name');
+                location.reload();
+            }
+        }
+    </script>
 </body>
 </html>
