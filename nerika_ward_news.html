@@ -238,6 +238,21 @@
 
             <!-- 隠し記事（検索優先順位を上げるため） -->
             
+            <!-- 隠し記事6: 西原観音で出現 (END4) -->
+            <article id="nishihara-confession-article" class="featured-article" style="display: none; margin-top: 20px; border: 2px solid #000; background: #111; color: #fff;">
+                <div class="content">
+                    <span style="color: #f00; font-weight: bold;">[遺稿]</span>
+                    <h2 style="color: #fff;">すべては、私がやった。</h2>
+                    <p>この記事が公開される頃、私はすでに警察の手に落ちているだろう。10年前、あの静かなアパートで九条れいの未来を奪ったのは、他の誰でもない、この私だ。</p>
+                    <p>矢木も髙橋も、そして彼女の弟さえも、私の書いた記事ひとつで踊らされていたに過ぎない。真実は常に、書く者の手の中にあるのだから。</p>
+                    <div style="margin-top: 50px; padding: 40px; border: 5px double #f00; text-align: center; background: #000;">
+                        <h1 style="font-size: 4rem; color: #f00; margin: 0; letter-spacing: 10px; font-family: 'MS Mincho', serif;">END4</h1>
+                        <p style="font-size: 2.5rem; color: #fff; margin: 10px 0; font-weight: bold;">はんにんのかしら</p>
+                    </div>
+                    <small style="display: block; margin-top: 20px; text-align: right; color: #888;">執筆者：西原観音</small>
+                </div>
+            </article>
+
             <!-- 隠し記事4: 髙橋鉄二で出現 (END2) -->
             <article id="yagi-release-article" class="featured-article" style="display: none; margin-top: 20px; border: 2px solid #28a745;">
                 <div class="content">
@@ -410,12 +425,13 @@
             const query = rawQuery.toLowerCase();
             const cleanQuery = query.replace(/\s+/g, ""); // スペース除去
             
-            const articles = document.querySelectorAll('.featured-article:not(#secret-article):not(#kujo-article):not(#yagi-arrest-article):not(#yagi-release-article):not(#kujo-leo-article), .news-item');
+            const articles = document.querySelectorAll('.featured-article:not(#secret-article):not(#kujo-article):not(#yagi-arrest-article):not(#yagi-release-article):not(#kujo-leo-article):not(#nishihara-confession-article), .news-item');
             const secretArticle = document.getElementById('secret-article');
             const kujoArticle = document.getElementById('kujo-article');
             const yagiArrestArticle = document.getElementById('yagi-arrest-article');
             const yagiReleaseArticle = document.getElementById('yagi-release-article');
             const kujoLeoArticle = document.getElementById('kujo-leo-article');
+            const nishiharaConfessionArticle = document.getElementById('nishihara-confession-article');
             const resultsInfo = document.getElementById('search-results-info');
             const queryDisplay = document.getElementById('search-query-display');
             const countDisplay = document.getElementById('search-count');
@@ -437,6 +453,7 @@
                 yagiArrestArticle.style.display = 'none';
                 yagiReleaseArticle.style.display = 'none';
                 kujoLeoArticle.style.display = 'none';
+                nishiharaConfessionArticle.style.display = 'none';
                 return;
             }
 
@@ -452,6 +469,14 @@
 
             // 優先順位に基づいた隠し記事の判定
             
+            // 0. 西原観音 (END4)
+            if (cleanQuery === "西原観音") {
+                nishiharaConfessionArticle.style.display = 'block';
+                count++;
+            } else {
+                nishiharaConfessionArticle.style.display = 'none';
+            }
+
             // 1. 髙橋鉄二 (END2)
             if (cleanQuery === "髙橋鉄二") {
                 yagiReleaseArticle.style.display = 'block';
