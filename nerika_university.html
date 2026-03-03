@@ -161,7 +161,45 @@
                 alert("学生ポータルにアクセスしました。");
                 document.getElementById('login-form').innerHTML = "<p style='color: green; font-weight: bold;'>ログイン中 (00000000)</p><button onclick='location.reload()'>ログアウト</button>";
                 document.getElementById('student-portal').style.display = 'block';
-            } else {
+            } 
+            else if (id === "0419840807" && pass === "Jelly") {
+                alert("ログイン成功：氏名「れい」");
+                document.getElementById('login-form').innerHTML = "<p style='color: blue; font-weight: bold;'>ログイン中 (れい)</p><button onclick='location.reload()'>ログアウト</button>";
+                document.getElementById('student-portal').style.display = 'block';
+                document.getElementById('student-portal').innerHTML = `
+                    <h3 style="margin-top: 0;">学生ポータル：成績・登録情報</h3>
+                    <div style="background: white; padding: 15px; border: 1px solid #ddd;">
+                        <p><strong>氏名：</strong> れい<br>
+                        <strong>所属：</strong> 理学部 化学科 1年</p>
+                        <hr>
+                        <p><strong>【2009年度 前期成績】</strong></p>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                            <tr style="background: #eee;">
+                                <th style="border: 1px solid #ccc; padding: 5px;">科目名</th>
+                                <th style="border: 1px solid #ccc; padding: 5px;">評価</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 5px;">基礎化学</td>
+                                <td style="border: 1px solid #ccc; padding: 5px; text-align: center;">A</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 5px;">有機化学Ⅰ</td>
+                                <td style="border: 1px solid #ccc; padding: 5px; text-align: center;">B</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 5px;">ドイツ語初級</td>
+                                <td style="border: 1px solid #ccc; padding: 5px; text-align: center;">C</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 5px;">調理実習基礎</td>
+                                <td style="border: 1px solid #ccc; padding: 5px; text-align: center;">S</td>
+                            </tr>
+                        </table>
+                        <p style="font-size: 0.8rem; color: #d9534f; margin-top: 10px;">※「化学Ⅰ」は休講のため後日補講を行います。</p>
+                    </div>
+                `;
+            }
+            else {
                 alert("ユーザIDまたはパスワードが正しくありません。");
             }
         }
