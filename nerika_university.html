@@ -154,8 +154,11 @@
 
     <script>
         function portalLogin() {
-            const id = document.getElementById('user-id').value.trim();
-            const pass = document.getElementById('user-pass').value.trim();
+            const rawId = document.getElementById('user-id').value.trim();
+            const rawPass = document.getElementById('user-pass').value.trim();
+            
+            const id = rawId.replace(/\s+/g, "");
+            const pass = rawPass.replace(/\s+/g, "");
 
             if (id === "00000000" && pass === "0000") {
                 alert("学生ポータルにアクセスしました。");
@@ -195,6 +198,44 @@
                                 <td style="border: 1px solid #ccc; padding: 5px; text-align: center;">S</td>
                             </tr>
                         </table>
+                    </div>
+                `;
+            }
+            else if (id === "0919900121" && pass === "ierigay") {
+                alert("ログイン成功：氏名「山羊ゆう」");
+                document.getElementById('login-form').innerHTML = "<p style='color: red; font-weight: bold;'>ログイン中 (山羊ゆう)</p><button onclick='location.reload()'>ログアウト</button>";
+                document.getElementById('student-portal').style.display = 'block';
+                document.getElementById('student-portal').innerHTML = `
+                    <h3 style="margin-top: 0;">学生ポータル：成績・登録情報</h3>
+                    <div style="background: white; padding: 15px; border: 1px solid #ddd;">
+                        <p><strong>氏名：</strong> 山羊ゆう<br>
+                        <strong>所属：</strong> 法学部 法学科 2年</p>
+                        <hr>
+                        <p><strong>【2009年度 前期成績】</strong></p>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                            <tr style="background: #eee;">
+                                <th style="border: 1px solid #ccc; padding: 5px;">科目名</th>
+                                <th style="border: 1px solid #ccc; padding: 5px;">評価</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 5px;">憲法Ⅰ</td>
+                                <td style="border: 1px solid #ccc; padding: 5px; text-align: center;">S</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 5px;">民法総則</td>
+                                <td style="border: 1px solid #ccc; padding: 5px; text-align: center;">A</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 5px;">刑法各論</td>
+                                <td style="border: 1px solid #ccc; padding: 5px; text-align: center;">S</td>
+                            </tr>
+                        </table>
+                        
+                        <div style="margin-top: 20px; padding: 10px; background: #fff5f5; border: 1px solid #ffcdd2; font-size: 0.85rem;">
+                            <p style="color: #c62828; font-weight: bold; margin-top: 0;">【システムログ：未送信の申請】</p>
+                            <p style="color: #666;">・住所変更届（一時保存中）<br>
+                            移転先：東京都練鹿区栄町1-2-5 サニーハイツ練鹿 202号室</p>
+                        </div>
                     </div>
                 `;
             }
