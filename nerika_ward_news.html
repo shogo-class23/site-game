@@ -286,6 +286,21 @@
                 </div>
             </article>
 
+            <!-- 隠し記事4: 髙橋鉄二で出現 -->
+            <article id="yagi-release-article" class="featured-article" style="display: none; margin-top: 20px; border: 2px solid #28a745;">
+                <div class="content">
+                    <span style="color: #28a745; font-weight: bold;">[2020/03/04 追記]</span>
+                    <h2>【速報】矢木氏を誤認逮捕か。決定的なアリバイが判明し、即日釈放</h2>
+                    <p>練鹿警察署は、昨日逮捕した矢木優氏について、事件発生当時の決定的なアリバイが確認されたとして、本日午後に釈放したと発表した。髙橋記者による独自の取材の結果、矢木氏は当時別の場所にいたことが証明された。</p>
+                    <p>「彼はやっていなかった。警察の拙速な捜査が、罪のない男性の人生を壊しかけたのだ」と髙橋記者は指摘する。真犯人は未だ野放しの状態であり、事件は再び迷宮入りへと向かうのか。</p>
+                    <div style="margin-top: 50px; padding: 40px; border: 5px double #28a745; text-align: center; background: #f8fff9;">
+                        <h1 style="font-size: 4rem; color: #28a745; margin: 0; letter-spacing: 10px; font-family: 'MS Mincho', serif;">END2</h1>
+                        <p style="font-size: 2.5rem; color: #333; margin: 10px 0; font-weight: bold;">無罪の記者</p>
+                    </div>
+                    <small style="display: block; margin-top: 20px; text-align: right;">2020/03/04 09:00 | 記者：髙橋鉄二</small>
+                </div>
+            </article>
+
             <div class="news-grid">
                 <div class="news-item">
                     <img src="https://via.placeholder.com/150x100.png?text=新スーパー" alt="ニュース">
@@ -372,10 +387,11 @@
             const query = rawQuery.toLowerCase();
             const cleanQuery = query.replace(/\s+/g, ""); // スペース除去
             
-            const articles = document.querySelectorAll('.featured-article:not(#secret-article):not(#kujo-article):not(#yagi-arrest-article), .news-item');
+            const articles = document.querySelectorAll('.featured-article:not(#secret-article):not(#kujo-article):not(#yagi-arrest-article):not(#yagi-release-article), .news-item');
             const secretArticle = document.getElementById('secret-article');
             const kujoArticle = document.getElementById('kujo-article');
             const yagiArrestArticle = document.getElementById('yagi-arrest-article');
+            const yagiReleaseArticle = document.getElementById('yagi-release-article');
             const resultsInfo = document.getElementById('search-results-info');
             const queryDisplay = document.getElementById('search-query-display');
             const countDisplay = document.getElementById('search-count');
@@ -393,6 +409,7 @@
                 secretArticle.style.display = 'none';
                 kujoArticle.style.display = 'none';
                 yagiArrestArticle.style.display = 'none';
+                yagiReleaseArticle.style.display = 'none';
                 return;
             }
 
@@ -428,6 +445,14 @@
                 count++;
             } else {
                 yagiArrestArticle.style.display = 'none';
+            }
+
+            // 隠し記事4の判定 (髙橋鉄二)
+            if (cleanQuery === "髙橋鉄二") {
+                yagiReleaseArticle.style.display = 'block';
+                count++;
+            } else {
+                yagiReleaseArticle.style.display = 'none';
             }
 
             resultsInfo.style.display = 'block';
