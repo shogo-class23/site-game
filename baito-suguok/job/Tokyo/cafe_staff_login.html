@@ -84,14 +84,15 @@
 
         function login() {
             const name = document.getElementById('staff-name').value.toLowerCase().trim();
-            const pass = document.getElementById('staff-pass').value.trim();
+            // パスワードからスペースを除去して判定
+            const pass = document.getElementById('staff-pass').value.replace(/\s+/g, "");
 
             if (staffData[name] && staffData[name] === pass) {
                 document.getElementById('login-form').style.display = 'none';
                 document.getElementById('staff-content').style.display = 'block';
                 document.getElementById('welcome-msg').textContent = "お疲れ様です、" + name + "さん。";
             } else {
-                alert("認証に失敗しました。");
+                alert("認証に失敗しました。名前（ローマ字）またはパスワードを確認してください。");
             }
         }
     </script>
