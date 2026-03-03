@@ -135,7 +135,7 @@
                     <button onclick="portalLogin()">ログイン</button>
                     <div class="hint" style="text-align: center; background: #fff; border: 1px dashed #bbb; padding: 5px; color: #666; margin-top: 15px; border-radius: 3px;">
                         <span style="font-size: 0.6rem; display: block; margin-bottom: 2px;">[ゲスト用ID/PASS]</span>
-                        <span style="letter-spacing: 2px;">0000 / 00000000</span>
+                        <span style="letter-spacing: 2px;">00000000 / 0000</span>
                     </div>
                 </div>
             </div>
@@ -155,12 +155,11 @@
     <script>
         function portalLogin() {
             const id = document.getElementById('user-id').value.trim();
-            // パスワードのスペースを無視して判定
-            const pass = document.getElementById('user-pass').value.replace(/\s+/g, "");
+            const pass = document.getElementById('user-pass').value.trim();
 
-            if (id === "0000" && pass === "00000000") {
+            if (id === "00000000" && pass === "0000") {
                 alert("学生ポータルにアクセスしました。");
-                document.getElementById('login-form').innerHTML = "<p style='color: green; font-weight: bold;'>ログイン中 (0000)</p><button onclick='location.reload()'>ログアウト</button>";
+                document.getElementById('login-form').innerHTML = "<p style='color: green; font-weight: bold;'>ログイン中 (00000000)</p><button onclick='location.reload()'>ログアウト</button>";
                 document.getElementById('student-portal').style.display = 'block';
             } else {
                 alert("ユーザIDまたはパスワードが正しくありません。");
