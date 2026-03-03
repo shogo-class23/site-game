@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>練鹿区の物件情報 - 物件名サンプル</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            background-color: #f7f7f7;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 登録・ログイン用オーバーレイ */
+        #registration-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .registration-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            max-width: 400px;
+            width: 90%;
+        }
+        .registration-box h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .registration-box input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .registration-box button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .notice-area {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e9f5ff;
+            color: #004085;
+            border-radius: 5px;
+            display: none;
+            text-align: left;
+        }
+
+        .header {
+            background-color: #fff;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .main-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .pagination-hint {
+            background: #fff3cd;
+            padding: 15px;
+            border: 1px solid #ffeeba;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #856404;
+            line-height: 1.5;
+        }
+        .property-title h1 {
+            font-size: 2.2rem;
+            margin: 0;
+            color: #222;
+        }
+        .property-title .address {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        .property-tags {
+            margin: 1rem 0;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #e9f5ff;
+            color: #007bff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .photo-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .photo-main img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .photo-thumbnails {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+        .photo-thumbnails img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+        .info-item {
+            padding: 0.5rem;
+        }
+        .info-item .label {
+            font-weight: bold;
+            color: #555;
+            display: block;
+        }
+        .info-item .value {
+            font-size: 1.2rem;
+            color: #d9534f;
+            font-weight: bold;
+        }
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+        .details-table th, .details-table td {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            text-align: left;
+        }
+        .details-table th {
+            background-color: #f2f2f2;
+            width: 25%;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .action-button {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .inquiry-btn { background-color: #d9534f; color: white; }
+        .booking-btn { background-color: #5cb85c; color: white; }
+        .favorite-btn { background-color: #f0ad4e; color: white; }
+        .footer-info {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            background-color: #fff;
+            border-top: 1px solid #ddd;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">練鹿区不動産</div>
+        <div id="user-display" style="font-size: 0.9rem; color: #666;"></div>
+    </header>
+
+    <!-- 登録・ログインシステム -->
+    <div id="registration-overlay">
+        <div class="registration-box">
+            <h2 id="modal-title">名前を登録をして色んな物件を見よう！</h2>
+            
+            <!-- ステップ1: 名前登録 -->
+            <div id="step-register">
+                <input type="text" id="reg-name" placeholder="お名前を入力してください">
+                <br>
+                <button onclick="registerName()">登録する</button>
+            </div>
+
+            <!-- ステップ2: パスワード表示 -->
+            <div id="step-notice" class="notice-area">
+                <p>登録ありがとうございます、<span id="registered-name-display" style="font-weight: bold;"></span>さん！</p>
+                <p>初期パスワードは「<strong>0000</strong>」です。</p>
+                <div style="text-align: center; margin-top: 15px;">
+                    <button onclick="goToLogin()">ログイン画面へ</button>
+                </div>
+            </div>
+
+            <!-- ステップ3: ログイン -->
+            <div id="step-login" style="display: none;">
+                <p style="margin-bottom: 15px; color: #666;">登録したお名前とパスワードを入力してください。</p>
+                <input type="text" id="login-name" placeholder="お名前">
+                <br>
+                <input type="password" id="login-pass" placeholder="パスワード">
+                <br>
+                <button onclick="checkLogin()">ログイン</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- ページネーション案内 -->
+        <div class="pagination-hint">
+            現在12件ご用意ができています。1ページ10件までです。<br>
+            次のページに行く際はURLの最後のほうにある数字を変更してください。<br>
+            例：3から6ページに行きたい場合、最後の方にある「3」を「6」にします。
+        </div>
+
+        <!-- 物件詳細 -->
+        <div class="property-title">
+            <h1>パークビュー練鹿 301号室</h1>
+            <p class="address">東京都練鹿区栄町1-2-3</p>
+        </div>
+
+        <div class="property-tags">
+            <span class="tag">駅近5分</span>
+            <span class="tag">南向き</span>
+            <span class="tag">ペット相談可</span>
+            <span class="tag">オートロック</span>
+            <span class="tag">2階以上</span>
+        </div>
+
+        <div class="photo-section">
+            <div class="photo-main">
+                <img src="https://via.placeholder.com/600x400.png?text=外観写真" alt="外観写真">
+            </div>
+            <div class="photo-thumbnails">
+                <img src="https://via.placeholder.com/300x200.png?text=室内写真1" alt="室内写真1">
+                <img src="https://via.placeholder.com/300x200.png?text=室内写真2" alt="室内写真2">
+                <img src="https://via.placeholder.com/300x200.png?text=室内写真3" alt="室内写真3">
+                <img src="https://via.placeholder.com/300x200.png?text=間取り図" alt="間取り図">
+            </div>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="label">家賃</span>
+                <span class="value">10.5万円</span>
+            </div>
+            <div class="info-item">
+                <span class="label">管理費・共益費</span>
+                <span class="value">5,000円</span>
+            </div>
+            <div class="info-item">
+                <span class="label">敷金 / 礼金</span>
+                <span class="value">1ヶ月 / 1ヶ月</span>
+            </div>
+            <div class="info-item">
+                <span class="label">間取り / 向き</span>
+                <span class="value">1LDK / 南</span>
+            </div>
+        </div>
+        
+        <table class="details-table">
+            <tr>
+                <th>専有面積</th>
+                <td>40.5m²</td>
+                <th>築年数</th>
+                <td>5年</td>
+            </tr>
+            <tr>
+                <th>最寄り駅</th>
+                <td colspan="3">
+                    JR山足線「練鹿駅」徒歩5分<br>
+                    西足池貸線「練鹿三丁目駅」徒歩12分<br>
+                    <span style="color: #c00; font-weight: bold;">[新設予定]</span> 練鹿区営地下鉄「栄町一丁目駅」徒歩2分（2030年開通予定）
+                </td>
+            </tr>
+        </table>
+
+        <div class="action-buttons">
+            <a href="#" class="action-button inquiry-btn">お問い合わせ</a>
+            <a href="#" class="action-button booking-btn">内見予約</a>
+            <a href="#" class="action-button favorite-btn">お気に入り登録</a>
+        </div>
+    </div>
+
+    <footer class="footer-info">
+        <p><strong>運営会社:</strong> 株式会社練鹿エステート</p>
+        <p>※掲載情報と現況に差異がある場合は、現況を優先します。</p>
+        <p>&copy; 2026 Nerika Estate Inc. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const savedName = localStorage.getItem('nerika_user_name');
+        const isLoggedIn = sessionStorage.getItem('nerika_logged_in');
+
+        // 初期表示の制御
+        if (savedName) {
+            if (isLoggedIn) {
+                document.getElementById('registration-overlay').style.display = 'none';
+                showWelcome(savedName);
+            } else {
+                goToLogin();
+            }
+        }
+
+        function registerName() {
+            const name = document.getElementById('reg-name').value.trim();
+            if (name === "") {
+                alert("お名前を入力してください。");
+                return;
+            }
+            localStorage.setItem('nerika_user_name', name);
+            document.getElementById('registered-name-display').textContent = name;
+            document.getElementById('step-register').style.display = 'none';
+            document.getElementById('step-notice').style.display = 'block';
+            document.getElementById('modal-title').textContent = '登録完了';
+        }
+
+        function goToLogin() {
+            document.getElementById('modal-title').textContent = 'ログイン';
+            document.getElementById('step-register').style.display = 'none';
+            document.getElementById('step-notice').style.display = 'none';
+            document.getElementById('step-login').style.display = 'block';
+            
+            if (localStorage.getItem('nerika_user_name')) {
+                document.getElementById('login-name').value = localStorage.getItem('nerika_user_name');
+            }
+        }
+
+        function checkLogin() {
+            const name = document.getElementById('login-name').value.trim();
+            const pass = document.getElementById('login-pass').value.trim();
+            const correctName = localStorage.getItem('nerika_user_name');
+
+            if (name === correctName && pass === "0000") {
+                alert("ログインしました！");
+                sessionStorage.setItem('nerika_logged_in', 'true');
+                document.getElementById('registration-overlay').style.display = 'none';
+                showWelcome(name);
+            } else {
+                alert("名前またはパスワードが違います。");
+            }
+        }
+
+        function showWelcome(name) {
+            document.getElementById('user-display').innerHTML = name + ' 様、ようこそ！ <a href="#" onclick="logout()" style="font-size: 0.7rem; color: #007bff; text-decoration: none;">(リセット)</a>';
+        }
+
+        function logout() {
+            if(confirm("登録情報を削除して最初からやり直しますか？")) {
+                localStorage.removeItem('nerika_user_name');
+                sessionStorage.removeItem('nerika_logged_in');
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
