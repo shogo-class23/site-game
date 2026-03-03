@@ -106,11 +106,7 @@
                 document.getElementById('login-form').style.display = 'none';
                 document.getElementById('staff-content').style.display = 'block';
                 
-                let displayName = name;
-                if (name === "yuu") displayName = "矢木優";
-                if (name === "rei") displayName = "九条れい";
-                
-                document.getElementById('welcome-msg').textContent = "Login Success: " + displayName;
+                document.getElementById('welcome-msg').textContent = "Login Success: " + name;
                 
                 // yuuでログインした場合の特別な業務連絡
                 if (name === "yuu") {
