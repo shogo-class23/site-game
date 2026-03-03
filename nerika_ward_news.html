@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ねりか区ニュース - 練鹿区の今を伝える地域密着型メディア</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        .top-bar {
+            background-color: #c00;
+            color: white;
+            padding: 5px 20px;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        .header {
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #c00;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: #c00;
+            letter-spacing: 2px;
+        }
+        .nav-nav {
+            background-color: #333;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .nav-nav ul li {
+            padding: 12px 20px;
+        }
+        .nav-nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .nav-nav ul li:hover {
+            background-color: #444;
+        }
+        .main-content {
+            max-width: 1100px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            padding: 0 15px;
+        }
+        .featured-article {
+            background: white;
+            padding: 0;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .featured-article img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        .featured-article .content {
+            padding: 20px;
+        }
+        .featured-article h2 {
+            margin-top: 0;
+            font-size: 1.8rem;
+            color: #111;
+        }
+        .news-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .news-item {
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 10px;
+        }
+        .news-item img {
+            width: 100px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 3px;
+        }
+        .news-item h3 {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .sidebar-box {
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .sidebar-box h3 {
+            border-left: 5px solid #c00;
+            padding-left: 10px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        .ranking-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .ranking-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .ranking-list li:last-child {
+            border-bottom: none;
+        }
+        .rank-num {
+            font-weight: bold;
+            color: #c00;
+            font-size: 1.2rem;
+            min-width: 20px;
+        }
+        .footer {
+            background-color: #333;
+            color: #ccc;
+            padding: 40px 20px;
+            margin-top: 50px;
+            text-align: center;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <span>2026年3月3日（火）</span>
+        <span>練鹿区の天気：晴れ 12℃</span>
+    </div>
+    <header class="header">
+        <h1>ねりか区ニュース</h1>
+    </header>
+    <nav class="nav-nav">
+        <ul>
+            <li><a href="index.html">トップ</a></li>
+            <li><a href="#">ニュース</a></li>
+            <li><a href="#">イベント</a></li>
+            <li><a href="#">グルメ</a></li>
+            <li><a href="nerika_city_Real_Estate.html">不動産</a></li>
+            <li><a href="#">求人</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <div class="left-col">
+            <article class="featured-article">
+                <img src="https://via.placeholder.com/800x400.png?text=ねりか区地下鉄延伸計画" alt="ニュース画像">
+                <div class="content">
+                    <span style="color: #c00; font-weight: bold;">[行政]</span>
+                    <h2>練鹿区地下鉄の延伸計画が正式決定。2030年の開通を目指す</h2>
+                    <p>練鹿区役所は本日、区内を縦断する新地下鉄路線の延伸計画を正式に発表した。この計画により、交通の便が飛躍的に向上することが期待されている...</p>
+                    <small>2026/03/03 10:45</small>
+                </div>
+            </article>
+
+            <div class="news-grid">
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/150x100.png?text=新スーパー" alt="ニュース">
+                    <div>
+                        <span style="color: #007bff; font-size: 0.8rem;">[開店]</span>
+                        <h3>栄町にスーパー「マルエツ」が新規オープン。開店前から行列</h3>
+                    </div>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/150x100.png?text=自炊大学生" alt="ニュース">
+                    <div>
+                        <span style="color: #28a745; font-size: 0.8rem;">[ライフスタイル]</span>
+                        <h3>「自炊を頑張る大学生」のブログがSNSで話題に。練鹿区在住か</h3>
+                    </div>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/150x100.png?text=秋祭り" alt="ニュース">
+                    <div>
+                        <span style="color: #ffc107; font-size: 0.8rem;">[イベント]</span>
+                        <h3>練鹿秋祭り2026の開催日が決定。今年は過去最大規模のパレードも</h3>
+                    </div>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/150x100.png?text=駅前再開発" alt="ニュース">
+                    <div>
+                        <span style="color: #c00; font-size: 0.8rem;">[経済]</span>
+                        <h3>練鹿駅前の再開発ビル、入居テナントが一部公開。大手家電量販店も</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <aside class="sidebar">
+            <div class="sidebar-box">
+                <h3>アクセスランキング</h3>
+                <ul class="ranking-list">
+                    <li>
+                        <span class="rank-num">1</span>
+                        <span>練鹿区の地下鉄延伸計画、全ルート詳細が判明</span>
+                    </li>
+                    <li>
+                        <span class="rank-num">2</span>
+                        <span>今週末に行きたい！練鹿区の穴場ランチ5選</span>
+                    </li>
+                    <li>
+                        <span class="rank-num">3</span>
+                        <span>【新築物件】パークビュー練鹿が入居募集開始</span>
+                    </li>
+                    <li>
+                        <span class="rank-num">4</span>
+                        <span>練鹿区立栄町小学校でICT教育の公開授業</span>
+                    </li>
+                    <li>
+                        <span class="rank-num">5</span>
+                        <span>春の交通安全キャンペーン、練鹿署が実施</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-box">
+                <h3>ピックアップ</h3>
+                <p><strong>練鹿区不動産特集</strong><br>
+                理想の住まいを練鹿で見つけよう。<br>
+                <a href="nerika_city_Real_Estate.html">→ 詳細はこちら</a></p>
+            </div>
+        </aside>
+    </div>
+
+    <footer class="footer">
+        <p>ねりか区ニュース (Nerika Ward News)</p>
+        <p>
+            <a href="index.html">トップ</a> | 
+            <a href="about.html">運営会社</a> | 
+            <a href="#">プライバシーポリシー</a> | 
+            <a href="#">お問い合わせ</a>
+        </p>
+        <p>&copy; 2026 Nerika Ward News. All rights reserved.</p>
+    </footer>
+</body>
+</html>
