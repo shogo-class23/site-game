@@ -241,6 +241,16 @@
                 </div>
             </article>
 
+            <!-- 隠し記事: 特定の検索ワードでのみ出現 -->
+            <article id="secret-article" class="featured-article" style="display: none; margin-top: 20px; border: 2px solid #c00;">
+                <div class="content">
+                    <span style="color: #c00; font-weight: bold;">[2010/03/01 アーカイブ]</span>
+                    <h2>大学生料理ブロガー「れい」の家特定も本人不在　広がる憶測</h2>
+                    <p>いなかった。筆者は引き続き取材をしたいと思う。ブログも読み進み、バイト先にも取材する予定だ。</p>
+                    <small>2010/03/01 08:00</small>
+                </div>
+            </article>
+
             <div class="news-grid">
                 <div class="news-item">
                     <img src="https://via.placeholder.com/150x100.png?text=新スーパー" alt="ニュース">
@@ -324,16 +334,20 @@
     <script>
         document.getElementById('news-search').addEventListener('input', function(e) {
             const query = e.target.value.toLowerCase().trim();
-            const articles = document.querySelectorAll('.featured-article, .news-item');
+            const articles = document.querySelectorAll('.featured-article:not(#secret-article), .news-item');
+            const secretArticle = document.getElementById('secret-article');
             const resultsInfo = document.getElementById('search-results-info');
             const queryDisplay = document.getElementById('search-query-display');
             const countDisplay = document.getElementById('search-count');
+            
+            // 特定の検索キーワード
+            const secretKeywords = ["サニーハイツ練鹿 202号室", "サニーハイツ練鹿", "東京都練鹿区栄町1-2-5", "練鹿区栄町1-2-5", "栄町1-2-5"];
             
             let count = 0;
 
             articles.forEach(article => {
                 const text = article.innerText.toLowerCase();
-                if (text.includes(query)) {
+                if (query !== "" && text.includes(query)) {
                     article.style.display = article.classList.contains('news-item') ? 'flex' : 'block';
                     count++;
                 } else {
@@ -341,16 +355,24 @@
                 }
             });
 
+            // 隠し記事の判定
+            if (query !== "" && secretKeywords.some(key => key.toLowerCase() === query)) {
+                secretArticle.style.display = 'block';
+                count++;
+            } else {
+                secretArticle.style.display = 'none';
+            }
+
             if (query.length > 0) {
                 resultsInfo.style.display = 'block';
                 queryDisplay.textContent = query;
                 countDisplay.textContent = count;
             } else {
                 resultsInfo.style.display = 'none';
-                // Show everything when search is cleared
                 articles.forEach(article => {
                     article.style.display = article.classList.contains('news-item') ? 'flex' : 'block';
                 });
+                secretArticle.style.display = 'none';
             }
         });
     </script>
