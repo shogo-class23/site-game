@@ -55,42 +55,44 @@
         <h2>STAFF LOGIN</h2>
         <div id="login-form">
             <input type="text" id="staff-name" placeholder="名前 (ローマ字)">
-            <input type="password" id="staff-pass" placeholder="パスワード (採用年月日8桁)">
+            <input type="password" id="staff-pass" placeholder="パスワード">
             <button onclick="login()">ログイン</button>
         </div>
 
         <div id="staff-content">
             <h3 id="welcome-msg"></h3>
-            <p style="color: #d9534f; font-weight: bold;">【重要：業務連絡】</p>
-            <ul style="font-size: 0.9rem;">
-                <li>3月のお祭りフェアのレシピを更新しました。</li>
-                <li>「れい」さんが考案した焼きそばのソース配分は厳守してください。</li>
-                <li>備品の在庫チェックをお願いします。</li>
-            </ul>
-            <p style="font-size: 0.8rem; color: #666; margin-top: 20px;">※ログイン成功。名前は下の名前ローマ字、パスワードは採用年月日です。</p>
-            <button onclick="location.reload()" style="background-color: #999; margin-top: 10px;">ログアウト</button>
+            <div id="login-hint-box" style="display: none; background: #fdfdfd; border: 1px solid #eee; padding: 15px; margin-top: 10px;">
+                <p style="font-size: 0.9rem; color: #333; margin: 0; line-height: 1.6;">
+                    名前は下の名前ローマ字、<br>
+                    パスワードは採用年月日です。
+                </p>
+            </div>
+            <button onclick="location.reload()" style="background-color: #999; margin-top: 20px;">戻る</button>
         </div>
 
         <div class="hint">
-            test:0000 0000
+            0000 0000
         </div>
     </div>
 
     <script>
         const staffData = {
             "rei": "20090319",
-            "test": "00000000"
+            "0000": "0000"
         };
 
         function login() {
             const name = document.getElementById('staff-name').value.toLowerCase().trim();
-            // パスワードからスペースを除去して判定
-            const pass = document.getElementById('staff-pass').value.replace(/\s+/g, "");
+            const pass = document.getElementById('staff-pass').value.trim();
 
             if (staffData[name] && staffData[name] === pass) {
                 document.getElementById('login-form').style.display = 'none';
                 document.getElementById('staff-content').style.display = 'block';
-                document.getElementById('welcome-msg').textContent = "お疲れ様です、" + name + "さん。";
+                document.getElementById('welcome-msg').textContent = "Login Success: " + name;
+                
+                if (name === "0000") {
+                    document.getElementById('login-hint-box').style.display = 'block';
+                }
             } else {
                 alert("認証に失敗しました。名前（ローマ字）またはパスワードを確認してください。");
             }
