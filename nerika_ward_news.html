@@ -423,6 +423,14 @@
                 }
             });
 
+            // 隠し記事4の判定 (髙橋鉄二) - 最優先表示
+            if (cleanQuery === "髙橋鉄二") {
+                yagiReleaseArticle.style.display = 'block';
+                count++;
+            } else {
+                yagiReleaseArticle.style.display = 'none';
+            }
+
             // 隠し記事1の判定
             if (secretKeywords.some(key => key.toLowerCase().replace(/\s+/g, "") === cleanQuery)) {
                 secretArticle.style.display = 'block';
@@ -445,14 +453,6 @@
                 count++;
             } else {
                 yagiArrestArticle.style.display = 'none';
-            }
-
-            // 隠し記事4の判定 (髙橋鉄二)
-            if (cleanQuery === "髙橋鉄二") {
-                yagiReleaseArticle.style.display = 'block';
-                count++;
-            } else {
-                yagiReleaseArticle.style.display = 'none';
             }
 
             resultsInfo.style.display = 'block';
