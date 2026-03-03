@@ -197,6 +197,11 @@
     <div id="search-results-info" style="max-width: 1100px; margin: 10px auto; padding: 0 15px; display: none; color: #666;">
         「<span id="search-query-display" style="font-weight: bold;"></span>」の検索結果: <span id="search-count" style="font-weight: bold; color: #c00;">0</span> 件
     </div>
+    
+    <div id="no-results-message" style="max-width: 1100px; margin: 20px auto; padding: 20px; display: none; text-align: center; background: white; border: 1px solid #ddd; border-radius: 4px; color: #666;">
+        <p>検索結果が見つかりませんでした。</p>
+        <p style="font-size: 0.9rem;">別の単語等を入れるとヒットすることがあります。</p>
+    </div>
 
     <div class="main-content">
         <div class="left-col">
@@ -396,6 +401,7 @@
             const resultsInfo = document.getElementById('search-results-info');
             const queryDisplay = document.getElementById('search-query-display');
             const countDisplay = document.getElementById('search-count');
+            const noResultsMsg = document.getElementById('no-results-message');
             
             // 特定の検索キーワード
             const secretKeywords = ["サニーハイツ練鹿 202号室", "サニーハイツ練鹿", "東京都練鹿区栄町1-2-5", "練鹿区栄町1-2-5", "栄町1-2-5"];
@@ -404,6 +410,7 @@
 
             if (query === "") {
                 resultsInfo.style.display = 'none';
+                noResultsMsg.style.display = 'none';
                 articles.forEach(article => {
                     article.style.display = article.classList.contains('news-item') ? 'flex' : 'block';
                 });
@@ -459,6 +466,13 @@
             resultsInfo.style.display = 'block';
             queryDisplay.textContent = rawQuery;
             countDisplay.textContent = count;
+
+            // ヒットしなかった場合のメッセージ表示
+            if (count === 0) {
+                noResultsMsg.style.display = 'block';
+            } else {
+                noResultsMsg.style.display = 'none';
+            }
         }
 
         // ボタンクリックで検索
