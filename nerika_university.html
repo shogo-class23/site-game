@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>練鹿大学公式サイト | Nerika University</title>
+    <style>
+        body {
+            font-family: "MS PGothic", sans-serif;
+            margin: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .header {
+            background-color: #003366;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid #cc9900;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 20px;
+        }
+        .news-section h2 {
+            border-bottom: 2px solid #003366;
+            padding-bottom: 5px;
+            color: #003366;
+        }
+        .news-list {
+            list-style: none;
+            padding: 0;
+        }
+        .news-list li {
+            padding: 10px 0;
+            border-bottom: 1px dotted #ccc;
+        }
+        .date { font-weight: bold; color: #666; margin-right: 10px; }
+        
+        .login-box {
+            background: #e9eef3;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccd;
+        }
+        .login-box h3 { margin-top: 0; font-size: 1rem; color: #003366; }
+        .login-box input { width: 90%; margin-bottom: 10px; padding: 5px; border: 1px solid #aaa; }
+        .login-box button { width: 100%; padding: 8px; background: #003366; color: white; border: none; cursor: pointer; }
+        
+        #student-portal { display: none; margin-top: 20px; background: #fff9c4; padding: 15px; border: 2px solid #fbc02d; }
+        
+        .footer { text-align: center; padding: 20px; font-size: 0.8rem; color: #777; border-top: 1px solid #ccc; margin-top: 20px; }
+        .hint { font-size: 0.7rem; color: #ccc; margin-top: 10px; text-align: right; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>練鹿大学 (Nerika University)</h1>
+        <p>〜知の開拓、未来への飛躍〜</p>
+    </div>
+
+    <div class="container">
+        <div class="news-section">
+            <h2>お知らせ</h2>
+            <ul class="news-list">
+                <li><span class="date">2026/03/03</span> 【重要】令和8年度 前期授業の登録について</li>
+                <li><span class="date">2026/02/25</span> 練鹿キャンパス内 ネットワークメンテナンスのお知らせ</li>
+                <li><span class="date">2026/02/10</span> 【図書館】春季休業中の開館時間について</li>
+                <li><span class="date">2026/01/15</span> 大学祭実行委員会より：2025年度収支報告</li>
+            </ul>
+            
+            <div id="student-portal">
+                <h3 style="margin-top: 0;">学生ポータル：認証成功</h3>
+                <div style="background: white; padding: 10px; border: 1px solid #ddd;">
+                    <p><strong>【学籍番号の作り方】</strong></p>
+                    <p style="font-size: 0.9rem;">本学の学籍番号は、以下の規則に従って発行されています。</p>
+                    <code style="display: block; background: #eee; padding: 10px; margin: 10px 0;">
+                        [学部コード(2桁)] + [入学年度下2桁] + [個人番号(4桁)]
+                    </code>
+                    <p style="font-size: 0.85rem; color: #666;">※学部コード：文学部(11)、理学部(22)、経済学部(33)<br>
+                    例：2009年度入学の経済学部生の場合、先頭は「3309...」となります。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="login-box">
+                <h3>学生・教職員ログイン</h3>
+                <div id="login-form">
+                    <input type="text" id="user-id" placeholder="ユーザID">
+                    <input type="password" id="user-pass" placeholder="パスワード">
+                    <button onclick="portalLogin()">ログイン</button>
+                    <div class="hint">test 0000 0000</div>
+                </div>
+            </div>
+            <div style="margin-top: 20px; font-size: 0.9rem;">
+                <p>・<a href="#">カリキュラム</a></p>
+                <p>・<a href="#">シラバス検索</a></p>
+                <p>・<a href="#">証明書発行</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2026 Nerika University. All rights reserved.</p>
+        <p>このサイトはフィクションです。実在の教育機関とは関係ありません。</p>
+    </div>
+
+    <script>
+        function portalLogin() {
+            const id = document.getElementById('user-id').value.trim();
+            const pass = document.getElementById('user-pass').value.trim();
+
+            if (id === "0000" && pass === "0000") {
+                alert("学生ポータルにアクセスしました。");
+                document.getElementById('login-form').innerHTML = "<p style='color: green; font-weight: bold;'>ログイン中 (0000)</p><button onclick='location.reload()'>ログアウト</button>";
+                document.getElementById('student-portal').style.display = 'block';
+            } else {
+                alert("ユーザIDまたはパスワードが正しくありません。");
+            }
+        }
+    </script>
+</body>
+</html>
