@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>れい料理大学生 - トップページ</title>
+    <title>れい料理大学生 - 公式サイト</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,6 +24,9 @@
         .nav-bar {
             background-color: #004499;
             padding: 0.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         .nav-bar ul {
             list-style: none;
@@ -39,6 +42,10 @@
             color: white;
             text-decoration: none;
             font-weight: bold;
+            cursor: pointer;
+        }
+        .nav-bar ul li a:hover {
+            text-decoration: underline;
         }
         .container {
             max-width: 800px;
@@ -47,6 +54,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            min-height: 400px;
         }
         .section-title {
             color: #0056b3;
@@ -62,106 +70,106 @@
             color: #555;
             font-size: 0.9em;
         }
+        .page-content {
+            display: none;
+        }
+        .page-content.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
     <header class="header">
         <h1>れい料理大学生</h1>
     </header>
+    
     <nav class="nav-bar">
         <ul>
-            <li><a href="index.html">トップページ</a></li>
-            <li><a href="about.html">自己紹介</a></li>
-            <li><a href="contents.html">コンテンツ一覧</a></li>
-            <li><a href="nerika_ward_news.html">ねりか区ニュース</a></li>
+            <li><a onclick="showPage('home')">トップページ</a></li>
+            <li><a onclick="showPage('about1')">自己紹介</a></li>
+            <li><a onclick="showPage('hint')">ヒントページ</a></li>
         </ul>
     </nav>
+
     <div class="container">
-        <h2 class="section-title">ようこそ！</h2>
-        <p>このサイトは、私の趣味や活動について紹介する個人サイトです。これから様々なコンテンツを追加していく予定ですので、どうぞよろしくお願いいたします。</p>
+        <!-- ホーム -->
+        <div id="home" class="page-content active">
+            <h2 class="section-title">ようこそ！</h2>
+            <p>このサイトは、私の趣味や活動について紹介する個人サイトです。これから様々なコンテンツを追加していく予定ですので、どうぞよろしくお願いいたします。<strong>まずは、ねりか区ニュースの記事をお読みください。</strong></p>
 
-        <h2 class="section-title">アクセスカウンター</h2>
-        <p>あなたは <strong style="color: #e44d26;">1</strong> 番目のお客様です！</p>
+            <h2 class="section-title">アクセスカウンター</h2>
+            <p>あなたは <strong style="color: #e44d26;">1</strong> 番目のお客様です！</p>
 
-        <h2 class="section-title">更新系</h2>
-        <h3>更新履歴</h3>
-        <ul>
-            <li>2026/03/03 - ねりか区ニュースを開設しました</li>
-            <li>2026/01/09 - サイト開設</li>
-            <!-- 今後の更新履歴をここに追加 -->
-        </ul>
-        <h3>地域情報</h3>
-        <ul>
-            <li><a href="nerika_university.html">通っている大学：練鹿大学</a></li>
-            <li><a href="nerika_ward_news.html">ねりか区ニュース</a></li>
-            <li><a href="nerika_ward_Real_Estate.html">練鹿区不動産情報</a></li>
-        </ul>
-        <h3>日記／ブログ</h3>
-        <ul>
-            <li><a href="archive/index.html20100121 .html">2010/01/21 - お祝い</a></li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li><a href="archive/index.html20091221 .html">2009/12/21 - もうすぐクリスマス</a></li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li><a href="archive/index.html20091128 .html">2009/11/28 - 再会</a></li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li><a href="archive/index.html20091114 .html">2009/11/14 - かわいい（笑）</a></li>
-            <li><a href="archive/index.html20091107 .html">2009/11/07 - 挑戦状！</a></li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li><a href="archive/index.html20091014 .html">2009/10/14 - 頑張らなきゃ</a></li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li><a href="archive/index.html20091007 .html">2009/10/07 - バイト</a></li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li><a href="archive/index.html20090914 .html">2009/09/14 - 初めてのお酒</a></li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li><a href="archive/index.html20090828 .html">2009/08/28 - 弟が…（笑）</a></li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li><a href="archive/index.html20090807 .html">2009/08/07 - 大阪へ</a></li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li><a href="archive/index.html20090714 .html">2009/07/14 - ご報告！</a></li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li><a href="archive/index.html20090707 .html">2009/07/07 - 肉じゃが！</a></li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li style="color: #999;">この記事は閲覧できません。</li>
-            <li><a href="archive/index.html20090428 .html">2009/04/28 - 今日休講かい！</a></li>
-            <li><a href="archive/index.html20090421 .html">2009/04/21 - うれしい！</a></li>
-            <li><a href="archive/index.html20090414 .html">2009/04/14 - ケーキ作ってみた</a></li>
-            <li><a href="archive/index.html20090407 .html">2009/04/07 - 慣れてきた！</a></li>
-            <li><a href="archive/index.html20090328 .html">2009/03/28 - 最悪…</a></li>
-            <li><a href="archive/index.html20090321 .html">2009/03/21 - 一昨日受かった！</a></li>
-            <li><a href="archive/index.html20090314 .html">2009/03/14 - 緊張する…</a></li>
-            <li><a href="archive/index.html20090307 .html">2009/03/07 - バイト申し込むか！</a></li>
-            <li><a href="archive/index.html20090228 .html">2009/02/28 - 実際に見てきた！</a></li>
-            <li><a href="archive/index.html20090221 .html">2009/02/21 - いいの見つけた！</a></li>
-            <li><a href="archive/index.html20090214 .html">2009/02/14 - チョコ食べたい～。</a></li>
-            <li><a href="archive/index.html20090207 .html">2009/02/07 - ブログ始めました～よろしく～</a></li>
-            <!-- 今後の日記記事をここに追加 -->
-        </ul>
-        <p>最終更新日: 2026年3月3日</p>
+            <h2 class="section-title">地域情報</h2>
+            <ul>
+                <li><a href="nerika_ward_news.html">ねりか区ニュース</a></li>
+                <li><a onclick="showPage('hint')" style="color: #0056b3; text-decoration: underline; cursor: pointer;">ヒントページ</a></li>
+            </ul>
+            <h2 class="section-title">日記／ブログ</h2>
+            <ul>
+                <li><a href="archive/index.html20100121 .html">2010/01/21 - お祝い</a></li>
+                <li><a href="archive/index.html20091221 .html">2009/12/21 - もうすぐクリスマス</a></li>
+                <li><a href="archive/index.html20091128 .html">2009/11/28 - 再会</a></li>
+                <li><a href="archive/index.html20091114 .html">2009/11/14 - かわいい（笑）</a></li>
+                <li><a href="archive/index.html20091107 .html">2009/11/07 - 挑戦状！</a></li>
+                <li><a href="archive/index.html20091014 .html">2009/10/14 - 頑張らなきゃ</a></li>
+                <li><a href="archive/index.html20091007 .html">2009/10/07 - バイト</a></li>
+                <li><a href="archive/index.html20090914 .html">2009/09/14 - 初めてのお酒</a></li>
+                <li><a href="archive/index.html20090828 .html">2009/08/28 - 弟が…（笑）</a></li>
+                <li><a href="archive/index.html20090807 .html">2009/08/07 - 大阪へ</a></li>
+                <li><a href="archive/index.html20090714 .html">2009/07/14 - ご報告！</a></li>
+                <li><a href="archive/index.html20090707 .html">2009/07/07 - 肉じゃが！</a></li>
+                <li><a href="archive/index.html20090428 .html">2009/04/28 - 今日休講かい！</a></li>
+                <li><a href="archive/index.html20090421 .html">2009/04/21 - うれしい！</a></li>
+                <li><a href="archive/index.html20090414 .html">2009/04/14 - ケーキ作ってみた</a></li>
+                <li><a href="archive/index.html20090407 .html">2009/04/07 - 慣れてきた！</a></li>
+                <li><a href="archive/index.html20090328 .html">2009/03/28 - 最悪…</a></li>
+                <li><a href="archive/index.html20090321 .html">2009/03/21 - 一昨日受かった！</a></li>
+                <li><a href="archive/index.html20090314 .html">2009/03/14 - 緊張する…</a></li>
+                <li><a href="archive/index.html20090307 .html">2009/03/07 - バイト申し込むか！</a></li>
+                <li><a href="archive/index.html20090228 .html">2009/02/28 - 実際に見てきた！</a></li>
+                <li><a href="archive/index.html20090221 .html">2009/02/21 - いいの見つけた！</a></li>
+                <li><a href="archive/index.html20090214 .html">2009/02/14 - チョコ食べたい～。</a></li>
+                <li><a href="archive/index.html20090207 .html">2009/02/07 - ブログ始めました～よろしく～</a></li>
+            </ul>
+        </div>
+
+        <!-- 自己紹介 -->
+        <div id="about1" class="page-content">
+            <h2 class="section-title">自己紹介：僕のこと</h2>
+            <p>こんにちは！僕の名前はれいです。練鹿大学に通う大学生です。最近1人暮らしを始めました！</p>
+            <p>練鹿区での生活はまだ慣れないことばかりですが、毎日楽しく過ごしています。趣味は料理と、街を散策することです。</p>
+        </div>
+
+        <!-- ヒントページ（旧：自己紹介2） -->
+        <div id="hint" class="page-content">
+            <h2 class="section-title">ヒントページ</h2>
+            <p>このサイトを攻略するためのヒントを掲載しています。</p>
+            <ul>
+                <li>日記の端々に隠されたリンクを探してみてください。</li>
+                <li>「ねりか区ニュース」の検索窓に特定のキーワードを入れると、隠された真実が見えるかもしれません。</li>
+                <li>何かお困りのことがあれば、管理者まで。</li>
+            </ul>
+        </div>
     </div>
 
     <footer class="footer">
         <p>&copy; 2026 My Personal Site. All rights reserved.</p>
         <p>管理者: れい</p>
     </footer>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            const activePage = document.getElementById(pageId);
+            if (activePage) {
+                activePage.classList.add('active');
+            }
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>
