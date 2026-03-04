@@ -131,7 +131,7 @@
                 <h3>学生・教職員ログイン</h3>
                 <div id="login-form">
                     <input type="text" id="user-id" placeholder="ユーザID">
-                    <input type="password" id="user-pass" placeholder="パスワード">
+                    <input type="password" id="user-pass" placeholder="パスワード (小文字または数字のみ)">
                     <button onclick="portalLogin()">ログイン</button>
                     <div class="hint" style="text-align: center; background: #fff; border: 1px dashed #bbb; padding: 5px; color: #666; margin-top: 15px; border-radius: 3px;">
                         <span style="font-size: 0.6rem; display: block; margin-bottom: 2px;">[ゲスト用ID/PASS]</span>
@@ -165,7 +165,7 @@
                 document.getElementById('login-form').innerHTML = "<p style='color: green; font-weight: bold;'>ログイン中 (00000000)</p><button onclick='location.reload()'>ログアウト</button>";
                 document.getElementById('student-portal').style.display = 'block';
             } 
-            else if (id === "0419830807" && pass === "Jelly") {
+            else if (id === "0419830807" && pass === "jelly") {
                 alert("ログイン成功：氏名「九条れい」");
                 document.getElementById('login-form').innerHTML = "<p style='color: blue; font-weight: bold;'>ログイン中 (九条れい)</p><button onclick='location.reload()'>ログアウト</button>";
                 document.getElementById('student-portal').style.display = 'block';
